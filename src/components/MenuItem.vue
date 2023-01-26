@@ -16,7 +16,7 @@
     const bgColor = ref(generateRandomLightColor())
     const handleClick = () => emit('addToCart', props.menuItem)
     const getImage = path => {
-        return new URL(path, import.meta.url).href
+        return new URL(path, import.meta.url)
     }
 </script>
 

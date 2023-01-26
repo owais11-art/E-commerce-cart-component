@@ -5,7 +5,7 @@
     const decreaseQuantity = id => emit('decreaseItem', id)
     const handleRemoveFromCart = id => emit('removeFromCart', id)
     const getImage = path => {
-        return new URL(path, import.meta.url).href
+        return new URL(path, import.meta.url)
     }
 </script>
 
