@@ -4,13 +4,16 @@
     const increaseQuantity = id => emit('increaseItem', id)
     const decreaseQuantity = id => emit('decreaseItem', id)
     const handleRemoveFromCart = id => emit('removeFromCart', id)
+    const getImage = path => {
+        return new URL(path, import.meta.url).href
+    }
 </script>
 
 <template>
     <div class="cart-item">
         <div class="image">
             <div class="count">{{ cartItem.count }}</div>
-            <img :src="cartItem.image" :alt="cartItem.alt"/>
+            <img :src="getImage(`/src/assets/${cartItem.image}`)" :alt="cartItem.alt"/>
         </div>
         <div class="content">
             <p class="name">{{ cartItem.name }}</p>

@@ -15,12 +15,15 @@
     }
     const bgColor = ref(generateRandomLightColor())
     const handleClick = () => emit('addToCart', props.menuItem)
+    const getImage = path => {
+        return new URL(path, import.meta.url).href
+    }
 </script>
 
 <template>
     <div class="menu-item">
         <div class="image">
-            <img :src="menuItem.image" :alt="menuItem.alt">
+            <img :src="getImage(`/src/assets/${menuItem.image}`)" :alt="menuItem.alt">
         </div>
         <div class="content">
             <p class="name">{{ menuItem.name }}</p>
