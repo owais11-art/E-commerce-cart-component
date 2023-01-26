@@ -1,19 +1,21 @@
 <script setup>
+    import { watch, ref } from 'vue';
     const props = defineProps(['cartItem'])
     const emit = defineEmits(['increaseItem', 'decreaseItem', 'removeFromCart'])
     const increaseQuantity = id => emit('increaseItem', id)
     const decreaseQuantity = id => emit('decreaseItem', id)
     const handleRemoveFromCart = id => emit('removeFromCart', id)
-    const getImage = path => {
-        return new URL(path, import.meta.url)
-    }
+    const dishImage = ref('')
+    watch(() => props.cartItem, async () => {
+        dishImage.value = (await import(/* @vite-ignore */ `../assets/${props.cartItem.image}.png`)).default
+    }, {immediate: true})
 </script>
 
 <template>
     <div class="cart-item">
         <div class="image">
             <div class="count">{{ cartItem.count }}</div>
-            <img :src="`./${cartItem.image}.png`" :alt="cartItem.alt"/>
+            <img :src="dishImage" :alt="cartItem.alt"/>
         </div>
         <div class="content">
             <p class="name">{{ cartItem.name }}</p>

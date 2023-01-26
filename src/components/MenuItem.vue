@@ -1,5 +1,5 @@
 <script setup>
-    import { computed, inject, ref } from 'vue'
+    import { computed, inject, ref, watch } from 'vue'
     const props = defineProps(['menuItem'])
     const emit = defineEmits(['addToCart'])
     const cart = inject('cart-items')
@@ -15,15 +15,16 @@
     }
     const bgColor = ref(generateRandomLightColor())
     const handleClick = () => emit('addToCart', props.menuItem)
-    const getImage = path => {
-        return new URL(path, import.meta.url)
-    }
+    const dishImage = ref('')
+    watch(() => props.menuItem, async () => {
+        dishImage.value = (await import(/* @vite-ignore */ `../assets/${props.menuItem.image}.png`)).default
+    }, {immediate: true})
 </script>
 
 <template>
     <div class="menu-item">
         <div class="image">
-            <img :src="`./${menuItem.image}.png`" :alt="menuItem.alt">
+            <img :src="dishImage" :alt="menuItem.alt">
         </div>
         <div class="content">
             <p class="name">{{ menuItem.name }}</p>
