@@ -23,7 +23,7 @@
 <template>
     <div class="menu-item">
         <div class="image">
-            <img :src="getImage(`../assets/${menuItem.image}.png`)" :alt="menuItem.alt">
+            <img :src="`/${menuItem.image}.png`" :alt="menuItem.alt">
         </div>
         <div class="content">
             <p class="name">{{ menuItem.name }}</p>

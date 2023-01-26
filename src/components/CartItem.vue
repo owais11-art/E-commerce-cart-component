@@ -13,7 +13,7 @@
     <div class="cart-item">
         <div class="image">
             <div class="count">{{ cartItem.count }}</div>
-            <img :src="getImage(`../assets/${cartItem.image}.png`)" :alt="cartItem.alt"/>
+            <img :src="`/${cartItem.image}.png`" :alt="cartItem.alt"/>
         </div>
         <div class="content">
             <p class="name">{{ cartItem.name }}</p>
