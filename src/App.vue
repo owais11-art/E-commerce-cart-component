@@ -71,12 +71,19 @@
     height: 100%;
     padding: 80px 0;
     gap: 20px;
+    @media(max-width: 768px){
+      flex-direction: column;
+      align-items: center;
+    }
     div{
       background-color: #fff;
       height: 812px;
       width: 375px;
       border-radius: 6px;
       overflow-y: scroll;
+      @media(max-width: 375px){
+        width: 100%;
+      }
       -ms-overflow-style: none; // hide scroll bar in IE and edge browsers
       scrollbar-width: none; // hide scrollbar in firefox
 
